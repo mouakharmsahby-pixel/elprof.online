@@ -1,0 +1,131 @@
+/* EL PROF — Luxury motion layer */
+:root {
+  --gold: #f6c85f;
+  --gold-soft: #fff1bd;
+  --ink: #071b3a;
+}
+
+body.landing-page {
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(246, 200, 95, .14), transparent 28rem),
+    radial-gradient(circle at 92% 18%, rgba(23, 105, 255, .12), transparent 32rem),
+    linear-gradient(180deg, #f8fbff 0%, #fff 45%, #f6f9ff 100%);
+}
+
+body.landing-page::before,
+body.landing-page::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .22;
+  pointer-events: none;
+  animation: luxuryFloat 14s ease-in-out infinite alternate;
+}
+
+body.landing-page::before { background: #ffd86b; top: 15%; left: -12rem; }
+body.landing-page::after { background: #7bb4ff; right: -12rem; bottom: 10%; animation-delay: -5s; }
+
+.site-header {
+  box-shadow: 0 10px 40px rgba(7, 27, 58, .06);
+  transition: background .3s ease, box-shadow .3s ease;
+}
+
+.brand-logo { filter: drop-shadow(0 7px 12px rgba(23, 105, 255, .18)); }
+
+.hero { position: relative; min-height: 680px; display: grid; align-items: center; }
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  right: 1%;
+  top: 8%;
+  border: 1px solid rgba(246, 200, 95, .28);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px rgba(246, 200, 95, .04), 0 0 0 56px rgba(23, 105, 255, .025);
+  animation: spinSlow 26s linear infinite;
+  pointer-events: none;
+}
+
+.hero-copy,
+.hero-visual { opacity: 0; transform: translateY(24px); animation: revealUp .8s cubic-bezier(.2,.8,.2,1) forwards; }
+.hero-visual { animation-delay: .16s; }
+.hero-copy h1 { text-wrap: balance; }
+.hero-copy h1::after {
+  content: "";
+  display: block;
+  width: 82px;
+  height: 5px;
+  margin-top: 22px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.preview-card {
+  position: relative;
+  border-color: rgba(246, 200, 95, .34);
+  box-shadow: 0 30px 80px rgba(7, 27, 58, .18), 0 0 0 1px rgba(255,255,255,.7) inset;
+  animation: cardFloat 6s ease-in-out infinite;
+}
+.preview-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.45) 48%, transparent 62%);
+  transform: translateX(-120%);
+  animation: shine 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.button { position: relative; overflow: hidden; }
+.button::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -80%;
+  width: 42%; height: 200%;
+  transform: rotate(24deg);
+  background: rgba(255,255,255,.34);
+  transition: left .55s ease;
+}
+.button:hover::after { left: 130%; }
+.button-primary { background: linear-gradient(135deg, #1769ff, #4d91ff 55%, #1769ff); background-size: 200% 100%; animation: gradientShift 5s ease infinite; }
+.button-yellow { background: linear-gradient(135deg, #ffd21f, #ffe98b, #f4bd27); background-size: 200% 100%; animation: gradientShift 5s ease infinite; }
+
+.eyebrow { box-shadow: 0 8px 22px rgba(23, 105, 255, .08); }
+.trust-grid, .feature-card, .course-card, .stat-box, .pricing-card, .testimonial { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+.trust-grid:hover { box-shadow: 0 22px 55px rgba(7, 27, 58, .10); }
+.feature-card:hover, .course-card:hover, .stat-box:hover, .pricing-card:hover, .testimonial:hover { transform: translateY(-9px); box-shadow: 0 24px 50px rgba(7, 27, 58, .12); border-color: rgba(246, 200, 95, .48); }
+.course-card.featured:hover, .pricing-card.featured-plan:hover { transform: translateY(-15px); }
+
+.feature-card, .course-card, .stat-box, .pricing-card, .testimonial, .trust-grid { opacity: 0; transform: translateY(24px); }
+.feature-card.is-visible, .course-card.is-visible, .stat-box.is-visible, .pricing-card.is-visible, .testimonial.is-visible, .trust-grid.is-visible { animation: revealUp .7s cubic-bezier(.2,.8,.2,1) forwards; }
+
+.section-heading h2 { text-wrap: balance; }
+.section-heading h2::after { content: ""; display: block; width: 58px; height: 3px; margin: 18px auto 0; border-radius: 99px; background: linear-gradient(90deg, var(--blue), var(--gold)); }
+.section-heading:not(.centered) h2::after { margin-left: 0; }
+
+.cta-inner { position: relative; overflow: hidden; border: 1px solid rgba(246, 200, 95, .34); }
+.cta-inner::before { content: ""; position: absolute; width: 18rem; height: 18rem; right: -5rem; top: -9rem; border: 1px solid rgba(255, 222, 124, .35); border-radius: 50%; box-shadow: 0 0 0 22px rgba(255, 222, 124, .06), 0 0 0 44px rgba(255, 222, 124, .04); animation: spinSlow 20s linear infinite reverse; }
+.cta-inner > * { position: relative; z-index: 1; }
+
+@keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes cardFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(.5deg); } }
+@keyframes shine { 0%, 55% { transform: translateX(-120%); } 78%,100% { transform: translateX(150%); } }
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes luxuryFloat { to { transform: translate3d(0, 35px, 0) scale(1.08); } }
+@keyframes gradientShift { 0%,100% { background-position: 0 50%; } 50% { background-position: 100% 50%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  .feature-card, .course-card, .stat-box, .pricing-card, .testimonial, .trust-grid, .hero-copy, .hero-visual { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+  .hero { min-height: auto; }
+  .hero::before { width: 20rem; height: 20rem; right: -8rem; top: 22%; }
+}
